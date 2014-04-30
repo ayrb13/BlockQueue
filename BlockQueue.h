@@ -35,7 +35,7 @@ class BlockQueue : boost::noncopyable
 {
 public:
 	typedef T element_type;
-	typedef std::deque<T> container;
+	typedef std::deque<element_type> container;
 	typedef typename container::size_type size_type;
 public:
 	//return current size of queue
@@ -51,9 +51,9 @@ public:
 		{
 			m_conditionNotEmpty.wait(sl);
 		}
-		element_type data = m_queue.front();
+		element_type ele = m_queue.front();
 		m_queue.pop_front();
-		return data;
+		return ele;
 	}
 	//pop a element and assign it ele
 	void pop(element_type& ele)
